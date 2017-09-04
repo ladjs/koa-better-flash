@@ -1,7 +1,7 @@
 # koa-better-flash
 
-[![build status](https://img.shields.io/travis/niftylettuce/koa-better-flash.svg)](<>)
-[![code coverage](https://img.shields.io/codecov/c/github/niftylettuce/koa-better-flash.svg)](<>)
+[![build status](https://semaphoreci.com/api/v1/niftylettuce/koa-better-flash/branches/master/shields_badge.svg)](https://semaphoreci.com/niftylettuce/koa-better-flash)
+[![code coverage](https://img.shields.io/codecov/c/github/niftylettuce/koa-better-flash.svg)](https://codecov.io/gh/niftylettuce/koa-better-flash)
 [![code style](https://img.shields.io/badge/code_style-XO-5ed9c7.svg)](https://github.com/sindresorhus/xo)
 [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 [![made with lass](https://img.shields.io/badge/made_with-lass-95CC28.svg)](https://github.com/lassjs/lass)

@@ -34,7 +34,22 @@
     "node": ">=8.x"
   },
   "homepage": "https://github.com/niftylettuce/koa-better-flash",
-  "keywords": ["koa-better-flash", "lass"],
+  "keywords": [
+    "connect",
+    "cookie",
+    "cookies",
+    "express",
+    "flash",
+    "info",
+    "koa-better-flash",
+    "kue",
+    "lass",
+    "messaging",
+    "node",
+    "queue",
+    "redis",
+    "sessions"
+  ],
   "license": "MIT",
   "lint-staged": {
     "*.{js,jsx,mjs,ts,tsx,css,less,scss,json,graphql}": [
