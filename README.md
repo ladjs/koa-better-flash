@@ -23,7 +23,7 @@
 [npm][]:
 
 ```sh
-npm install --save koa-better-flash
+npm install koa-better-flash
 ```
 
 [yarn][]:
