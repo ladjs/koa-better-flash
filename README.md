@@ -7,7 +7,7 @@
 [![made with lass](https://img.shields.io/badge/made_with-lass-95CC28.svg)](https://github.com/lassjs/lass)
 [![license](https://img.shields.io/github/license/niftylettuce/koa-better-flash.svg)](<>)
 
-> Flash message middleware with Promises for Koa and Passport
+> Flash message middleware for Koa and Passport
 
 
 ## Table of Contents
