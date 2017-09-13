@@ -26,7 +26,7 @@
     "nyc": "^11.1.0",
     "prettier": "^1.6.1",
     "remark-cli": "^4.0.0",
-    "remark-preset-github": "^0.0.5",
+    "remark-preset-github": "^0.0.6",
     "supertest": "^3.0.0",
     "xo": "^0.19.0"
   },
