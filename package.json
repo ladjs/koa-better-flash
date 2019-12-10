@@ -1,7 +1,7 @@
 {
   "name": "koa-better-flash",
   "description": "Flash message middleware for Koa and Passport",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "author": "Nick Baugh <niftylettuce@gmail.com> (http://niftylettuce.com/)",
   "bugs": {
     "url": "https://github.com/niftylettuce/koa-better-flash/issues",
