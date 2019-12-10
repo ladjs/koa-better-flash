@@ -1,4 +1,4 @@
-const { format, isArray } = require('util');
+const { format } = require('util');
 
 module.exports = function() {
   return function(ctx, next) {
@@ -8,30 +8,34 @@ module.exports = function() {
   };
 };
 
-function flash(type, msg) {
+function flash(type, msg, ...args) {
   if (typeof this.session !== 'object')
     throw new Error('ctx.flash() requires sessions');
   this.session.flash = this.session.flash || {};
   const msgs = this.session.flash;
   if (type && msg) {
-    if (arguments.length > 2) {
-      const args = Array.prototype.slice.call(arguments, 1);
-      msg = format.apply(undefined, args);
-    } else if (isArray(msg)) {
-      msg.forEach(val => {
+    if (args.length > 0) {
+      msg = format(...[msg, ...args]);
+    } else if (Array.isArray(msg)) {
+      for (const element of msg) {
         msgs[type] = msgs[type] || [];
-        msgs[type].push(val);
-      });
-      return msgs[type];
+        msgs[type].push(element);
+      }
+
+      return [...new Set(msgs[type])];
     }
+
     msgs[type] = msgs[type] || [];
     msgs[type].push(msg);
-    return msgs[type];
-  } else if (type) {
+    return [...new Set(msgs[type])];
+  }
+
+  if (type) {
     const arr = msgs[type];
     delete msgs[type];
-    return arr || [];
+    return [...new Set(arr)] || [];
   }
+
   this.session.flash = {};
   return msgs;
 }

@@ -2,12 +2,28 @@ const test = require('ava');
 const request = require('supertest');
 const Koa = require('koa');
 const session = require('koa-generic-session');
-const Router = require('koa-router');
+const Router = require('@koa/router');
 
-const { beforeEach, afterEach } = require('./helpers');
+const flash = require('..');
 
-test.beforeEach(beforeEach);
-test.afterEach(afterEach);
+test.beforeEach(t => {
+  const app = new Koa();
+  const router = new Router();
+  router.post('/', ctx => {
+    if (ctx.query.name) ctx.flash('info', 'hello %s world', ctx.query.name);
+    else if (ctx.query.multiple) ctx.flash('info', ['hi', 'world', 'hello']);
+    else ctx.flash('info', 'hello world');
+    ctx.status = 200;
+  });
+  router.get('/', ctx => {
+    ctx.body = ctx.flash('info');
+  });
+  app.keys = ['keys'];
+  app.use(session());
+  app.use(flash());
+  app.use(router.routes());
+  Object.assign(t.context, { app, flash });
+});
 
 test('binds a middleware function', t => {
   t.true(t.context.app.middleware.length === 3);
@@ -22,6 +38,7 @@ test('koa errors without sessions', async t => {
     this.length = Buffer.byteLength(this.body);
     this.res.end(this.body);
   };
+
   const router = new Router();
   router.get('/', ctx => {
     ctx.flash();
@@ -59,6 +76,17 @@ test('koa has empty flash session object after called', async t => {
 test('flash message', async t => {
   const { app } = t.context;
   const agent = request.agent(app.listen());
+  await agent.post('/');
+  const res = await agent.get('/').set('Accept', 'application/json');
+  t.deepEqual(res.body, ['hello world']);
+});
+
+test('flash message without duplicaes', async t => {
+  const { app } = t.context;
+  const agent = request.agent(app.listen());
+  await agent.post('/');
+  await agent.post('/');
+  await agent.post('/');
   await agent.post('/');
   const res = await agent.get('/').set('Accept', 'application/json');
   t.deepEqual(res.body, ['hello world']);
